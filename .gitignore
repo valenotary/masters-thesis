@@ -112,3 +112,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# custom user stuff
+lightning_logs/
+MNIST/
+workspace.*
