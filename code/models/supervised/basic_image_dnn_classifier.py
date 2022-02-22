@@ -19,12 +19,12 @@ class BasicImageDNNClassifier(LightningModule):
         x = x.view(batch_size, -1) # (batch_size, c*h*w)
         x = self.input_layer(x) # apply no function
         x = self.hidden_layer_1(x)
-        x = F.relu(x)
+        x = F.leaky_relu(x)
         x = self.output_layer(x)
         x = F.log_softmax(x, dim=1)
         return x
     
-    def training_step(self, batch, batch_idx):
+    def training_step(self, batch: tensor, batch_idx: int):
         x, y = batch 
         logits = self(x)
         loss = F.nll_loss(logits, y)
